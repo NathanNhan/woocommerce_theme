@@ -25,44 +25,47 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'woocommerce_theme' ); ?></a>
     <!-- Topbar Menu -->
-	<div class="container">
+    <div class="anoucement pt-2">
+      <div class="container">
 		<div class="row">
-			<div class="col-4">
-			   <ul class="d-flex anouncement__list__left gap-5">
-				<div class="anouncement__first_list d-flex">
-					<i class="bi bi-bell-fill"></i>
-					<li>Lorem, ipsum dolor</li>
-				</div>
-		
-				<div class="announcement__second_list d-flex">
-					<i class="bi bi-book-fill"></i>
-					<li>Lorem, ipsum</li>
-				</div>
-		
+			<div class="col-md-5">
+			   <ul class="anoucement__list-left d-flex justify-content-start gap-3 flex-md-column flex-lg-row">
+				<!-- Danh sách điện thoại -->
+				<li class="d-flex align-items-center">
+					<i class="bi bi-telephone rounded-circle"></i>
+					<a class="text-decoration-none text-black-100" href="tel:0933498976">+849 33349845</a>
+				</li>
+	
+				<li class="d-flex align-items-center">
+					<i class="bi bi-envelope rounded-circle"></i>
+					<a class="text-decoration-none text-black-100" href="mailto:trongnhan8150@gmail.com">trongnhan8150@gmail.com</a>
+				</li>
 			   </ul>
 			</div>
-		
-			<div class="col-8">
-				<ul class="anouncement__list__right d-flex justify-content-center gap-5">
-					<div class="anouncement__first_list d-flex">
-						<i class="bi bi-bell-fill"></i>
-						<li>Lorem, ipsum dolor</li>
-					</div>
-			
-					<div class="announcement__second_list d-flex">
-						<i class="bi bi-book-fill"></i>
-						<li>Lorem, ipsum</li>
-					</div>
-			
-					<div class="announcement__third_list d-flex">
-						<i class="bi bi-phone-fill"></i>
-						<li>Lorem, ipsum</li>
-					</div>
-				</ul>
+			<div class="col-md-7">
+			  <ul class="anouncement__list-right d-flex justify-lg-content-end gap-lg-5 justify-content-md-center flex-md-column flex-lg-row gap-md-1 align-items-lg-center">
+				<li class="d-flex align-items-center">
+					<i class="bi bi-truck rounded-circle"></i>
+					Free EU Shipping
+				</li>
+				<li class="d-flex align-items-center">
+					<i class="bi bi-clock-history rounded-circle"></i>
+					30 Day Menu Back
+				</li>
+				<li class="d-flex align-items-center">
+					<i class="bi bi-person rounded-circle"></i>
+					24/7 Customer Support
+				</li>
+			  </ul>
 			</div>
-	
 		</div>
+	  </div>
 	</div>
+
+
+
+
+
 	<header id="masthead" class="site-header">
 		<div class="site-branding">
 			<?php
