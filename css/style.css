@@ -9317,4 +9317,40 @@ textarea.form-control-lg {
 }
 .anoucement a:hover {
   color: #7F187F;
+}
+
+.main-navigation {
+  font-weight: 400;
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #fff;
+}
+.main-navigation .menu-toggle {
+  background-color: #7F187F;
+  color: #fff;
+  border: none !important;
+}
+.main-navigation li.current-menu-item {
+  background-color: #9d2b9d;
+}
+.main-navigation li.menu-item {
+  padding: 1rem 1.4rem;
+  transition: all 0.5s;
+}
+.main-navigation li.menu-item:hover {
+  background-color: #9d2b9d;
+}
+.main-navigation li.menu-item a {
+  color: #fff;
+}
+
+.site-header .aws-search-field {
+  padding-left: 1.4rem;
+  font-size: 15px;
+  border-radius: 25px !important;
+}
+.site-header img.custom-logo {
+  width: 200px;
+  height: 53px;
+  padding-left: 4.7rem;
 }/*# sourceMappingURL=style.css.map */

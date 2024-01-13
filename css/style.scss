@@ -49,3 +49,43 @@ $theme-colors: map-merge($theme-colors, $custom-color);
   }
 }
 
+// Css cho thanh menu header
+.main-navigation {
+  font-weight: 400;
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #fff;
+  .menu-toggle {
+    background-color: $primary;
+    color: $white;
+    border: none!important;
+  }
+  li.current-menu-item {
+    background-color: #9d2b9d;
+  }
+  li.menu-item {
+    padding: 1rem 1.4rem;
+    transition: all .5s;
+    &:hover {
+      background-color: #9d2b9d;
+    }
+    a {
+      color: $white;
+    }
+  }
+}
+
+// css cho header
+.site-header {
+  .aws-search-field {
+    padding-left: 1.4rem;
+    font-size: 15px;
+    border-radius: 25px!important;
+  }
+  img.custom-logo {
+    width: 200px;
+    height: 53px;
+    padding-left: 4.7rem;
+}
+}
+
