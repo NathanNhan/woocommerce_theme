@@ -144,6 +144,7 @@ function woocommerce_theme_scripts() {
 	wp_enqueue_script( 'woocommerce_theme-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
     wp_enqueue_style('bootstrap.css', get_template_directory_uri() . '/css/style.css', array(), '5.0.1', 'all');
 	wp_enqueue_style('bootstrap.icon', 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css', array(), '1.11.2', 'all');
+	wp_enqueue_script( 'bootstrap.js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js', 'jQuery', '1.0.3', true );
 	// Enqueue font 
 	wp_enqueue_script('font.sansource', 'https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,600&display=swap', array(), '1.0.1', false);
 	wp_enqueue_script('font.nunito', 'https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap', array(), '1.0.2', false);

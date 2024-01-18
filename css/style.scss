@@ -89,3 +89,13 @@ $theme-colors: map-merge($theme-colors, $custom-color);
 }
 }
 
+
+.rounded-3 {
+  border-radius: 25px!important;
+}
+
+div#carouselExampleIndicators {
+  button {
+    width: 9%!important;
+  }
+}

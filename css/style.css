@@ -9353,4 +9353,12 @@ textarea.form-control-lg {
   width: 200px;
   height: 53px;
   padding-left: 4.7rem;
+}
+
+.rounded-3 {
+  border-radius: 25px !important;
+}
+
+div#carouselExampleIndicators button {
+  width: 9% !important;
 }/*# sourceMappingURL=style.css.map */
