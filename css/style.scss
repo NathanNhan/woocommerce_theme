@@ -2,11 +2,13 @@
 
 $primary: #7F187F;
 $gray: #e6e6e6;
+$primary-opacity-8: #7f187f94;
 
 
 $theme-colors: (
   "primary": $primary,
-  "gray" : $gray
+  "gray" : $gray,
+  "primary-opacity-8": $primary-opacity-8
 );
 
 //Create your own map 
@@ -99,3 +101,11 @@ div#carouselExampleIndicators {
     width: 9%!important;
   }
 }
+
+.border-25 {
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+
+
