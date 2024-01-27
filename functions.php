@@ -198,3 +198,105 @@ function woocommerce_header_add_to_cart_fragment( $fragments ) {
 	$fragments['a.cart-customlocation'] = ob_get_clean();
 	return $fragments;
 }
+
+
+add_theme_support( 'woocommerce' );
+
+//Hook : woocommerce_archive_description
+add_action( 'woocommerce_archive_description', 'woocommerce_taxonomy_archive_description' );
+
+function woocommerce_taxonomy_archive_description() {
+	?>
+        <h3>Welcome to My Shop Page</h3>
+
+    <?php
+}
+
+//////// Bài Shop Page Woocommerce //////////////////
+//Hook: woocommerce_before_shop_loop 
+
+add_action( 'woocommerce_before_shop_loop', 'notice', 1);
+
+function notice() {
+	?>
+      <strong>Tất cả các sản phẩm sẽ được giảm giá đến ngày 1/3/2024</strong>
+
+    <?php 
+}
+
+
+//Hook: woocommerce_after_shop_loop_item_title
+add_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
+function woocommerce_template_loop_price() {
+	?>
+      <p><?php the_excerpt(  ); ?></p>
+
+    <?php 
+}
+
+
+//Hook: woocommerce_after_shop_loop_item
+
+
+
+
+
+
+add_action( 'woocommerce_after_shop_loop_item', 'ui_show_variation_stock' );
+ 
+function ui_show_variation_stock() {
+  //get current product
+  global $product;
+  
+  //check if it's a variable product
+  if ( $product->get_type() == 'variable' ) {
+      //loop through each variation
+    
+      foreach ( $product->get_available_variations() as $variation ) {
+      
+        //lets store the attributes so users will know it
+        $attributes = array();
+    
+        foreach ( $variation['attributes'] as $attribute ) {
+          //write each individual attribute (e.g. brown, plastic||green, metal)
+          $attributes[] = $attribute;
+        }
+		
+        
+		
+		
+    //combine all attributes in a string
+    // $attributes = implode( ', ', $attributes );
+	// var_dump($attributes[0]);
+    
+    //check if product is in stock
+        if ( $variation['max_qty'] > 0 || ! empty ( $variation['is_in_stock'] ) ) { 
+          //display stock count if any
+          echo '<br/>' . "Variations: " .  $attributes[0]; 
+        } else {
+      //just display out of stock
+          echo '<br/>' . "Variation: " .  $attributes[0]; 
+        }
+      }
+    }
+}
+
+
+
+
+//Hook: woocommerce_after_main_content
+add_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end' ,);
+function woocommerce_output_content_wrapper_end() {
+   echo "Hello Wrold";
+  
+}
+
+//Hook: Woocommerce after shop loop
+
+// add_action( 'woocommerce_after_shop_loop', 'woocommerce_pagination' );
+// function woocommerce_pagination() {
+// 	?>
+  <!-- <h1>Đây là phần phân trang</h1> -->
+ 
+// <?php 
+// }
