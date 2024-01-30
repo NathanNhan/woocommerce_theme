@@ -203,36 +203,36 @@ function woocommerce_header_add_to_cart_fragment( $fragments ) {
 add_theme_support( 'woocommerce' );
 
 //Hook : woocommerce_archive_description
-add_action( 'woocommerce_archive_description', 'woocommerce_taxonomy_archive_description' );
+// add_action( 'woocommerce_archive_description', 'woocommerce_taxonomy_archive_description' );
 
-function woocommerce_taxonomy_archive_description() {
+// function woocommerce_taxonomy_archive_description() {
 	?>
-        <h3>Welcome to My Shop Page</h3>
+        <!-- <h3>Welcome to My Shop Page</h3> -->
 
     <?php
-}
+// }
 
 //////// Bài Shop Page Woocommerce //////////////////
 //Hook: woocommerce_before_shop_loop 
 
-add_action( 'woocommerce_before_shop_loop', 'notice', 1);
+// add_action( 'woocommerce_before_shop_loop', 'notice', 1);
 
-function notice() {
+// function notice() {
 	?>
-      <strong>Tất cả các sản phẩm sẽ được giảm giá đến ngày 1/3/2024</strong>
+      <!-- <strong>Tất cả các sản phẩm sẽ được giảm giá đến ngày 1/3/2024</strong> -->
 
     <?php 
-}
+// }
 
 
 //Hook: woocommerce_after_shop_loop_item_title
-add_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
-function woocommerce_template_loop_price() {
+// add_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
+// function woocommerce_template_loop_price() {
 	?>
-      <p><?php the_excerpt(  ); ?></p>
+      <!-- <p><?php the_excerpt(  ); ?></p> -->
 
     <?php 
-}
+// }
 
 
 //Hook: woocommerce_after_shop_loop_item
@@ -242,54 +242,54 @@ function woocommerce_template_loop_price() {
 
 
 
-add_action( 'woocommerce_after_shop_loop_item', 'ui_show_variation_stock' );
+// add_action( 'woocommerce_after_shop_loop_item', 'ui_show_variation_stock' );
  
-function ui_show_variation_stock() {
-  //get current product
-  global $product;
+// function ui_show_variation_stock() {
+//   //get current product
+//   global $product;
   
-  //check if it's a variable product
-  if ( $product->get_type() == 'variable' ) {
-      //loop through each variation
+//   //check if it's a variable product
+//   if ( $product->get_type() == 'variable' ) {
+//       //loop through each variation
     
-      foreach ( $product->get_available_variations() as $variation ) {
+//       foreach ( $product->get_available_variations() as $variation ) {
       
-        //lets store the attributes so users will know it
-        $attributes = array();
+//         //lets store the attributes so users will know it
+//         $attributes = array();
     
-        foreach ( $variation['attributes'] as $attribute ) {
-          //write each individual attribute (e.g. brown, plastic||green, metal)
-          $attributes[] = $attribute;
-        }
+//         foreach ( $variation['attributes'] as $attribute ) {
+//           //write each individual attribute (e.g. brown, plastic||green, metal)
+//           $attributes[] = $attribute;
+//         }
 		
         
 		
 		
-    //combine all attributes in a string
-    // $attributes = implode( ', ', $attributes );
-	// var_dump($attributes[0]);
+//     //combine all attributes in a string
+//     // $attributes = implode( ', ', $attributes );
+// 	// var_dump($attributes[0]);
     
-    //check if product is in stock
-        if ( $variation['max_qty'] > 0 || ! empty ( $variation['is_in_stock'] ) ) { 
-          //display stock count if any
-          echo '<br/>' . "Variations: " .  $attributes[0]; 
-        } else {
-      //just display out of stock
-          echo '<br/>' . "Variation: " .  $attributes[0]; 
-        }
-      }
-    }
-}
+//     //check if product is in stock
+//         if ( $variation['max_qty'] > 0 || ! empty ( $variation['is_in_stock'] ) ) { 
+//           //display stock count if any
+//           echo '<br/>' . "Variations: " .  $attributes[0]; 
+//         } else {
+//       //just display out of stock
+//           echo '<br/>' . "Variation: " .  $attributes[0]; 
+//         }
+//       }
+//     }
+// }
 
 
 
 
 //Hook: woocommerce_after_main_content
-add_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end' ,);
-function woocommerce_output_content_wrapper_end() {
-   echo "Hello Wrold";
+// add_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end' ,);
+// function woocommerce_output_content_wrapper_end() {
+//    echo "Hello Wrold";
   
-}
+// }
 
 //Hook: Woocommerce after shop loop
 
@@ -298,5 +298,86 @@ function woocommerce_output_content_wrapper_end() {
 // 	?>
   <!-- <h1>Đây là phần phân trang</h1> -->
  
-// <?php 
+ <?php 
 // }
+
+
+
+//Bài Woocommerce Single Product hooks 
+
+remove_action('woocommerce_single_product_summary','woocommerce_template_single_price',10);
+add_action('woocommerce_single_product_summary','woocommerce_template_single_price',1);
+
+
+// Tùy chỉnh tab sản phẩm 
+// add_filter('woocommerce_product_tabs','short_description_custom');
+
+// function short_description_custom($tabs) {
+// 	// print_r($tabs);
+// 	unset($tabs['description']);
+// 	unset($tabs['additional_information']);
+// 	unset($tabs['reviews']);
+
+// 	$tabs['description_product'] = array(
+// 		"title" => "Full Description",
+// 		"priority" => "5",
+// 		"callback" => "woocommerce_description"
+// 	);
+
+// 	$tabs['discount'] = array(
+// 		"title" => "Sản phẩm khuyến mãi",
+// 		"priority" => "10",
+// 		"callback" => "woocommerce_discount"
+// 	);
+
+// 	return $tabs;
+	
+// }
+
+
+// function woocommerce_description() {
+// 	?>
+//      <div><?php the_content(); ?></div>
+
+//     <?php 
+// }
+
+
+// function woocommerce_discount() {
+// 	?> 
+//         <div><?php the_title() ?> Đang được khuyến mãi 100% </div>
+//     <?php 
+// }
+
+
+
+// add_filter('woocommerce_product_tabs','short_description_custom');
+
+// function short_description_custom($tabs) {
+//      ?> 
+//          <div class="woocommerce-tabs wc-tabs-wrapper">
+// 			<?php
+// 			   $tabs = the_content(); 
+// 			   return $tabs;
+// 			 ?>
+// 		 </div>
+
+//     <?php
+
+// }
+
+
+
+
+//Xử phần sản phẩm có liên quan 
+add_filter( 'woocommerce_output_related_products_args', 'jk_related_products_args', 20 );
+  function jk_related_products_args( $args ) {
+	$args['posts_per_page'] = 3; // 4 related products
+	$args['columns'] = 3; // arranged in 2 columns
+	return $args;
+}
+
+
+
+
+
