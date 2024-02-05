@@ -200,16 +200,17 @@ function woocommerce_header_add_to_cart_fragment( $fragments ) {
 }
 
 
-add_theme_support( 'woocommerce' );
+
 
 //Hook : woocommerce_archive_description
 // add_action( 'woocommerce_archive_description', 'woocommerce_taxonomy_archive_description' );
 
 // function woocommerce_taxonomy_archive_description() {
-	?>
+	/*?>
         <!-- <h3>Welcome to My Shop Page</h3> -->
 
     <?php
+	*/
 // }
 
 //////// Bài Shop Page Woocommerce //////////////////
@@ -218,20 +219,22 @@ add_theme_support( 'woocommerce' );
 // add_action( 'woocommerce_before_shop_loop', 'notice', 1);
 
 // function notice() {
-	?>
+	/*?>
       <!-- <strong>Tất cả các sản phẩm sẽ được giảm giá đến ngày 1/3/2024</strong> -->
 
     <?php 
+	*/
 // }
 
 
 //Hook: woocommerce_after_shop_loop_item_title
 // add_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
 // function woocommerce_template_loop_price() {
-	?>
+	/*?>
       <!-- <p><?php the_excerpt(  ); ?></p> -->
 
     <?php 
+	*/
 // }
 
 
@@ -295,18 +298,19 @@ add_theme_support( 'woocommerce' );
 
 // add_action( 'woocommerce_after_shop_loop', 'woocommerce_pagination' );
 // function woocommerce_pagination() {
-// 	?>
+/* 	?>
   <!-- <h1>Đây là phần phân trang</h1> -->
  
  <?php 
+ */
 // }
 
 
 
 //Bài Woocommerce Single Product hooks 
 
-remove_action('woocommerce_single_product_summary','woocommerce_template_single_price',10);
-add_action('woocommerce_single_product_summary','woocommerce_template_single_price',1);
+// remove_action('woocommerce_single_product_summary','woocommerce_template_single_price',10);
+// add_action('woocommerce_single_product_summary','woocommerce_template_single_price',1);
 
 
 // Tùy chỉnh tab sản phẩm 
@@ -336,17 +340,19 @@ add_action('woocommerce_single_product_summary','woocommerce_template_single_pri
 
 
 // function woocommerce_description() {
-// 	?>
-//      <div><?php the_content(); ?></div>
+   /*?>
+      <div><?php the_content(); ?></div>
 
-//     <?php 
+    <?php 
+	*/
 // }
 
 
 // function woocommerce_discount() {
-// 	?> 
-//         <div><?php the_title() ?> Đang được khuyến mãi 100% </div>
-//     <?php 
+	/* 	?> 
+         <div><?php the_title() ?> Đang được khuyến mãi 100% </div>
+    <?php 
+	*/
 // }
 
 
@@ -354,28 +360,91 @@ add_action('woocommerce_single_product_summary','woocommerce_template_single_pri
 // add_filter('woocommerce_product_tabs','short_description_custom');
 
 // function short_description_custom($tabs) {
-//      ?> 
-//          <div class="woocommerce-tabs wc-tabs-wrapper">
-// 			<?php
-// 			   $tabs = the_content(); 
-// 			   return $tabs;
-// 			 ?>
-// 		 </div>
+/*     ?> 
+          <div class="woocommerce-tabs wc-tabs-wrapper">
+			<?php
+			   $tabs = the_content(); 
+ 			   return $tabs;
+			 ?>
+		 </div>
 
-//     <?php
-
+    <?php
+*/
 // }
 
 
 
 
 //Xử phần sản phẩm có liên quan 
-add_filter( 'woocommerce_output_related_products_args', 'jk_related_products_args', 20 );
-  function jk_related_products_args( $args ) {
-	$args['posts_per_page'] = 3; // 4 related products
-	$args['columns'] = 3; // arranged in 2 columns
-	return $args;
+// add_filter( 'woocommerce_output_related_products_args', 'jk_related_products_args', 20 );
+//   function jk_related_products_args( $args ) {
+// 	$args['posts_per_page'] = 3; // 4 related products
+// 	$args['columns'] = 3; // arranged in 2 columns
+// 	return $args;
+// }
+
+
+
+add_theme_support( 'woocommerce' );
+// Tùy chỉnh cho trang cart page bằng hook -- Bài 8 
+
+//Cho Free shipping nếu đơn đơn hàng trên 20 đ
+add_action("woocommerce_before_cart_table","show_notice_free_ship");
+
+function show_notice_free_ship() {
+	$min_amount = 20;
+	$current_amount = WC()->cart->subtotal; 
+	if($current_amount < $min_amount) {
+		?>
+			<div class="woocommerce-message">
+				Bạn cần mua thêm <?php echo wc_price( $min_amount - $current_amount); ?> đ để được Free Ship
+			</div>
+
+		<?php
+	}
 }
+
+
+// Show thời hạn sử dụng mã khuyến mãi 
+add_action("woocommerce_cart_coupon","show_thoi_han");
+function show_thoi_han() {
+	?> 
+      <div class="woocommerce-error">Bạn còn 30 ngày sử dụng cho coupon</div>
+	<?php 
+}
+
+
+//Show thông báo thời hạn giao hàng 
+add_action("woocommerce_before_cart","custom_message");
+function custom_message () {
+	?> 
+       <div class="woocommerce-info">Sản phẩm sẽ được giao trong vòng 7 ngày !!!</div>
+	<?php 
+} 
+
+
+// Thêm nút return to shopping 
+add_action("woocommerce_after_cart_table","button_return_to_shopping");
+function button_return_to_shopping() {
+	?> 
+	   <div class="wc-proceed-to-checkout" style="width: max-content;">
+		   <a href="<?php echo site_url('/shop');?>" class="checkout-button button alt wc-forward">
+			   Return to Shopping
+		   </a>
+
+	   </div>
+
+
+
+    <?php  
+}
+
+
+
+
+
+
+
 
 
 
