@@ -484,13 +484,23 @@ function bbloomer_validate_new_checkout_field() {
       wc_add_notice( 'Please enter your hotline', 'error' );
    }
 }
+
+
+
+add_action( 'woocommerce_checkout_update_order_meta', 'custom_checkout_field_update_order_meta' );
+function custom_checkout_field_update_order_meta( $order_id ) {
+    if ( ! isset( $_POST['billing_hotline'] ) ) return;
+    if ( empty( $_POST['billing_hotline'] ) ) return;
+
+    update_post_meta( $order_id, '_billing_hotline', sanitize_text_field( $_POST['billing_hotline'] ) );
+}
 //Lưu vào trang quản trị admin Wordpress 
 
-add_action( 'woocommerce_admin_order_data_after_billing_address', 'bbloomer_show_new_checkout_field_order',1 );
+add_action( 'woocommerce_admin_order_data_after_billing_address', 'bbloomer_show_new_checkout_field_order', );
    
 function bbloomer_show_new_checkout_field_order( $order ) {    
-   $order_id = $order->get_id();
-   if ( get_post_meta( $order_id, '_billing_hotline', true ) ) echo '<p><strong>Hotline Number:</strong> ' . get_post_meta( $order_id, '_billing_hotline', true ) . '</p>';
+ 
+    echo '<div><strong>Hotline Number:</strong> ' . get_post_meta( $order->get_id(), "_billing_hotline", true ) . '</div>';
 }
 
 
