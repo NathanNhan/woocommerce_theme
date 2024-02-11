@@ -440,6 +440,67 @@ function button_return_to_shopping() {
 }
 
 
+// Bài 9: Woocommerce checkout field custom 
+
+// add_filter( 'woocommerce_checkout_fields' , 'misha_print_all_fields' );
+
+// function misha_print_all_fields( $fields ) {
+
+// 	//if( !current_user_can( 'manage_options' ) )
+// 	//	return; // in case your website is live
+// 	echo '<pre>';
+// 	print_r( $fields ); // wrap results in pre html tag to make it clearer
+// 	exit;
+// }
+
+ add_filter( 'woocommerce_checkout_fields' , 'remove_company_field' );
+ function remove_company_field($data) {
+	unset($data["billing"]["billing_company"]);
+	return $data;
+ }
+
+
+
+
+add_filter( 'woocommerce_checkout_fields', 'bbloomer_add_custom_checkout_field' );
+  
+function bbloomer_add_custom_checkout_field( $data ) { 
+   $data["billing"]["billing_hotline"] =  array(        
+      'type' => 'text',        
+      'class' => array( 'form-row-wide' ),        
+      'label' => 'Hot Line',        
+      'placeholder' => 'xxx-xxx-xx',        
+      'required' => false,        
+      'default' => "0839411698",        
+   );
+   return $data;
+   
+}
+
+add_action( 'woocommerce_checkout_process', 'bbloomer_validate_new_checkout_field' );
+  
+function bbloomer_validate_new_checkout_field() {    
+   if ( ! $_POST['billing_hotline'] ) {
+      wc_add_notice( 'Please enter your hotline', 'error' );
+   }
+}
+//Lưu vào trang quản trị admin Wordpress 
+
+add_action( 'woocommerce_admin_order_data_after_billing_address', 'bbloomer_show_new_checkout_field_order',1 );
+   
+function bbloomer_show_new_checkout_field_order( $order ) {    
+   $order_id = $order->get_id();
+   if ( get_post_meta( $order_id, '_billing_hotline', true ) ) echo '<p><strong>Hotline Number:</strong> ' . get_post_meta( $order_id, '_billing_hotline', true ) . '</p>';
+}
+
+
+
+
+
+
+
+
+
 
 
 
