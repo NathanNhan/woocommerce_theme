@@ -193,7 +193,7 @@ function woocommerce_header_add_to_cart_fragment( $fragments ) {
 	ob_start();
 
 	?>
-	<a class="cart-customlocation" href="<?php echo esc_url(wc_get_cart_url()); ?>" title="<?php _e('View your shopping cart', 'woothemes'); ?>"><?php echo sprintf(_n('%d item', '%d items', $woocommerce->cart->cart_contents_count, 'woothemes'), $woocommerce->cart->cart_contents_count);?> – <?php echo $woocommerce->cart->get_cart_total(); ?></a>
+	<a class="cart-customlocation" href="<?php echo esc_url(wc_get_cart_url()); ?>" title="<?php _e('View your shopping cart', 'woothemes'); ?>"><?php echo sprintf(_n('%d item', '%d items', $woocommerce->cart->cart_contents_count, 'woocommerce_theme'), $woocommerce->cart->cart_contents_count);?> – <?php echo $woocommerce->cart->get_cart_total(); ?></a>
 	<?php
 	$fragments['a.cart-customlocation'] = ob_get_clean();
 	return $fragments;
@@ -501,6 +501,62 @@ add_action( 'woocommerce_admin_order_data_after_billing_address', 'bbloomer_show
 function bbloomer_show_new_checkout_field_order( $order ) {    
  
     echo '<div><strong>Hotline Number:</strong> ' . get_post_meta( $order->get_id(), "_billing_hotline", true ) . '</div>';
+}
+
+
+
+// Bài 10 : Tạo widget cho footer 
+add_action( 'widgets_init', 'widget_footer_menu_one' );
+
+function widget_footer_menu_one() {
+	$args = array( 
+		"id" => "footer_col_one",
+		"name" => __('Footer Widget One', 'woocommerce_theme'), 
+		"description" => __( 'Hello, this is Footer Widget for col 1', 'woocommerce_theme' ),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<h3 class="widget-title">',
+        'after_title' => '</h3>'
+	);
+    
+	register_sidebar( $args );
+}
+
+
+//Footer Widget col 2 
+add_action( 'widgets_init', 'widget_footer_menu_two' );
+
+function widget_footer_menu_two() {
+	$args = array( 
+		"id" => "footer_col_two",
+		"name" => __('Footer Widget Two', 'woocommerce_theme'), 
+		"description" => __( 'Hello, this is Footer Widget for col 2', 'woocommerce_theme' ),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<h3 class="widget-title">',
+        'after_title' => '</h3>'
+	);
+    
+	register_sidebar( $args );
+}
+
+
+
+//Footer Widget Col 3 
+add_action( 'widgets_init', 'widget_footer_menu_three' );
+
+function widget_footer_menu_three() {
+	$args = array( 
+		"id" => "footer_col_three",
+		"name" => __('Footer Widget Three', 'woocommerce_theme'), 
+		"description" => __( 'Hello, this is Footer Widget for col 3', 'woocommerce_theme' ),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<h3 class="widget-title">',
+        'after_title' => '</h3>'
+	);
+    
+	register_sidebar( $args );
 }
 
 

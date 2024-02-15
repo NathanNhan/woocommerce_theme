@@ -9464,4 +9464,13 @@ div#carouselExampleIndicators button {
 .border-25 {
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
+}
+
+.site-footer .menu {
+  padding: 0;
+  margin: 1.3rem;
+}
+.site-footer .menu a {
+  text-decoration: none;
+  color: #fff;
 }/*# sourceMappingURL=style.css.map */

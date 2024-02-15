@@ -10,21 +10,33 @@
  */
 
 ?>
-
 	<footer id="colophon" class="site-footer">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'woocommerce_theme' ) ); ?>">
-				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'woocommerce_theme' ), 'WordPress' );
-				?>
-			</a>
-			<span class="sep"> | </span>
-				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'woocommerce_theme' ), 'woocommerce_theme', '<a href="http://underscores.me/">Underscores.me</a>' );
-				?>
-		</div><!-- .site-info -->
+		<div class="bg-primary text-white pt-5 pb-5">
+			<div class="container">
+				<div class="row">
+					<div class="col-2">
+						<?php dynamic_sidebar( 'footer_col_one' ); ?> 
+					</div>
+
+					<div class="col-2">
+						<?php dynamic_sidebar( 'footer_col_two' ); ?> 
+					</div>
+
+					<div class="col-md-4 ms-auto">
+						<h3>Keep in touch</h3>
+						<?php dynamic_sidebar( 'footer_col_three' ); ?> 
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container pb-2 pt-2">
+			<div class="row d-flex align-items-center">
+				<div class="col">
+					<p>&copy; <?php bloginfo( 'name' ); ?> <?php echo date('Y') ?> created by <a href="google.com" target="_blank" rel="noopener noreferrer">Trọng Nhân Dev</a></p>
+				</div>
+			</div>
+		</div>
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 

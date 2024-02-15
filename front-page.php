@@ -114,7 +114,9 @@ get_header();
     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint, id!</p>
   </div>
 
-  
+  <div class="product__row-content">
+    <?php echo do_shortcode( '[products limit="4" columns="4" orderby="popularity" class="quick-sale" on_sale="true" ]' ) ?>
+  </div>
 </section>
 
 <?php 
