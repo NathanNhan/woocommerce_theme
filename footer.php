@@ -33,7 +33,8 @@
 		<div class="container pb-2 pt-2">
 			<div class="row d-flex align-items-center">
 				<div class="col">
-					<p>&copy; <?php bloginfo( 'name' ); ?> <?php echo date('Y') ?> created by <a href="google.com" target="_blank" rel="noopener noreferrer">Trọng Nhân Dev</a></p>
+					<!-- <p>&copy; <?php bloginfo( 'name' ); ?> <?php echo date('Y') ?> created by <a href="google.com" target="_blank" rel="noopener noreferrer">Trọng Nhân Dev</a></p> -->
+					<p><?php echo get_theme_mod( 'set-copyright' , '© Woocommerce Pet Shop 2024 created by Trọng Nhân Dev' ) ?></p>
 				</div>
 			</div>
 		</div>

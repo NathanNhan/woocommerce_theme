@@ -561,6 +561,37 @@ function widget_footer_menu_three() {
 
 
 
+//Bài 11: Theme option cho Woocommerce 
+
+add_action( 'customize_register', 'theme_option_customize' );
+
+function theme_option_customize($wp_customize) {
+	//Add Section 
+	$wp_customize->add_section("sec-copyright", array(
+		"title" => "Copyright section",
+		"description" => "This is a Description for copy right"
+	));
+
+	//Add setting
+	$wp_customize->add_setting("set-copyright", array(
+		"type" => "theme_mod",
+		"default" => "",
+		"sanitize_callback" => "sanitize_text_field"
+	));
+
+	//Add Control 
+    $wp_customize->add_control("set-copyright", array(
+		"label" => "Copyright",
+		"description" =>"Please fill description for copyright",
+		"section" => "sec-copyright",
+		"type" => "text"
+	));
+
+
+	
+}
+
+
 
 
 
