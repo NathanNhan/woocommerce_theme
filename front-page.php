@@ -40,7 +40,7 @@ get_header();
   </div>
 
   <div class="product__row-content">
-    <?php echo do_shortcode( '[products limit="4" columns="4"]' ) ?>
+    <?php echo do_shortcode( '[products limit="'.   get_theme_mod( 'popular-product-limit', 4 ) .'" columns="'.  get_theme_mod('popular-product-column', 4) .'"]' ) ?>
   </div>
 </section>
 
@@ -115,7 +115,7 @@ get_header();
   </div>
 
   <div class="product__row-content">
-    <?php echo do_shortcode( '[products limit="4" columns="4" orderby="popularity" class="quick-sale" on_sale="true" ]' ) ?>
+    <?php echo do_shortcode( '[products limit="'. get_theme_mod('special-product-limit', 4) .'" columns="'.  get_theme_mod('special-product-column', 4) .'" orderby="popularity" class="quick-sale" on_sale="true" ]' ) ?>
   </div>
 </section>
 
